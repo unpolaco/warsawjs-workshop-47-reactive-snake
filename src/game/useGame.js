@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
+import useGameDirection from './useGameDirection';
 
 export default function useGame({ gridSize, speed, increaseSpeed }) {
 	const [snake, setSnake] = useState([
@@ -10,8 +11,8 @@ export default function useGame({ gridSize, speed, increaseSpeed }) {
 		x: randomIndex(gridSize),
 		y: randomIndex(gridSize),
 	});
-	const direction = useRef('up');
-
+  const direction = useGameDirection('up')
+  
 	useEffect(() => {
 		const interval = setInterval(() => {
 			const [snakeHead] = snake;
@@ -26,14 +27,13 @@ export default function useGame({ gridSize, speed, increaseSpeed }) {
 				});
 				increaseSpeed();
 			}
-
-			if (direction.current === 'up') {
+			if (direction === 'up') {
 				newSnakeHead.x -= 1;
-			} else if (direction.current === 'down') {
+			} else if (direction === 'down') {
 				newSnakeHead.x += 1;
-			} else if (direction.current === 'right') {
+			} else if (direction === 'right') {
 				newSnakeHead.y += 1;
-			} else if (direction.current === 'left') {
+			} else if (direction === 'left') {
 				newSnakeHead.y -= 1;
 			}
 			const newSnake = fruitEaten
@@ -45,27 +45,7 @@ export default function useGame({ gridSize, speed, increaseSpeed }) {
 		return () => {
 			clearInterval(interval);
 		};
-	}, [snake, fruit, speed, gridSize, increaseSpeed]);
-
-	useEffect(() => {
-		document.addEventListener('keydown', handleKeyDown);
-		return () => {
-			document.removeEventListener('keydown', handleKeyDown);
-		};
-	}, []);
-
-	function handleKeyDown(e) {
-
-		if (e.key === 'ArrowUp') {
-			direction.current = 'up';
-		} else if (e.key === 'ArrowDown') {
-			direction.current = 'down';
-		} else if (e.key === 'ArrowLeft') {
-			direction.current = 'left';
-		} else if (e.key === 'ArrowRight') {
-			direction.current = 'right';
-		}
-	}
+	}, [snake, fruit, speed, gridSize, increaseSpeed, direction]);
 
 	function randomIndex(n) {
 		return Math.floor(Math.random() * n);
