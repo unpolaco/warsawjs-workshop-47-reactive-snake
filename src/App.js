@@ -1,10 +1,11 @@
 import React from 'react';
+import GameGrid from './game/GameGrid.jsx'
+
+const GridSize = 10;
 
 function App() {
   return (
-    <div>
-      tutaj będzie gra
-    </div>
+    <GameGrid gridSize={GridSize}/>
   );
 }
 
