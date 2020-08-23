@@ -13,15 +13,26 @@ function App() {
 		x: randomIndex(GridSize),
 		y: randomIndex(GridSize),
   });
-  
-	const direction = useRef('up');
-	const speed = 500;
+  const [speed, setSpeed] = useState(500);
 
+	const direction = useRef('up');
+  const SpeedMultiplier = 0.8;
+
+  
 	useEffect(() => {
-    
 		const interval = setInterval(() => {
 			const [snakeHead] = snake;
       const newSnakeHead = { ...snakeHead };
+      const fruitEaten = fruit.x === newSnakeHead.x && fruit.y === newSnakeHead.y;
+
+      if (fruitEaten) {
+        setFruit({
+          x: randomIndex(GridSize),
+          y: randomIndex(GridSize),
+        })
+        setSpeed(s => s * SpeedMultiplier)
+      }
+
       if (direction.current === 'up') {
         newSnakeHead.x -= 1;
       } else if (direction.current === 'down') {
@@ -31,8 +42,9 @@ function App() {
       } else if (direction.current === 'left') {
         newSnakeHead.y -= 1;
       }
-
-      const newSnake = [newSnakeHead, ...snake.slice(0, snake.length - 1)];
+      const newSnake = fruitEaten 
+      ? [newSnakeHead, ...snake.slice(0, snake.length)] 
+      : [newSnakeHead, ...snake.slice(0, snake.length - 1)] ;
       setSnake(newSnake);
     }, speed);
 
