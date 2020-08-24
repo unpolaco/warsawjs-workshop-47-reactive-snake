@@ -19,8 +19,15 @@ function App() {
 	}
 
 	return (
-		<GameContext.Provider value={{ speed, gridSize, increaseSpeed }}>
-			<Game />
+		<GameContext.Provider value={{ 
+				speed, 
+				gridSize, 
+				increaseSpeed, 
+				paused, 
+				unpauseGame, 
+				pauseGame 
+			}}>
+				<Game />
 		</GameContext.Provider>
 	);
 }
