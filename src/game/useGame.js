@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import useGameDirection from './useGameDirection';
 import useGameLoop from './useGameLoop';
-
-export default function useGame({ gridSize, speed, increaseSpeed }) {
+import GameContext from './GameContext'
+export default function useGame() {
+	const { gridSize, speed, increaseSpeed  } = useContext(GameContext);
 	const [snake, setSnake] = useState([
 		{ x: gridSize / 2, y: gridSize / 2 },
 		{ x: gridSize / 2, y: gridSize / 2 + 1 },
@@ -13,7 +14,6 @@ export default function useGame({ gridSize, speed, increaseSpeed }) {
 		y: randomIndex(gridSize),
 	});
 	const direction = useGameDirection('up');
-
 	useGameLoop({ speed, onTick: handleGameTick });
 
 	function handleGameTick() {
