@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useLayoutEffect } from 'react';
 import useGameDirection from './useGameDirection';
 import useGameLoop from './useGameLoop';
 import GameContext from './GameContext';
@@ -20,6 +20,12 @@ export default function useGame() {
 	const direction = useGameDirection('up');
 	useGameLoop({ speed, onTick: handleGameTick });
 	useSpaceDownEvent(pauseGame);
+
+	useLayoutEffect(() => {
+		const newFruit = document.querySelector('.fruitCell');
+		newFruit.style =
+			'transition: transform 0.5s; transform: rotate3d(1, 1, 1, 360deg);';
+	}, [fruit]);
 
 	function handleGameTick() {
 		if (!paused) {
