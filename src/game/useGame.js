@@ -70,6 +70,9 @@ export default function useGame() {
 			} else if (direction === 'left') {
 				newSnakeHead.y -= 1;
 			}
+			if(snake.find(snakePart => snakePart.x === newSnakeHead.x && snakePart.y === newSnakeHead.y)) {
+				alert("UPS! Snake is eating themself!")
+			}
 			const newSnake = fruitEaten
 				? [newSnakeHead, ...snake.slice(0, snake.length)]
 				: [newSnakeHead, ...snake.slice(0, snake.length - 1)];
