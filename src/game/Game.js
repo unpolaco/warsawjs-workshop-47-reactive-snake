@@ -11,7 +11,7 @@ export default function Game() {
   return (
     <>
     {paused ? <GameMenu/> : null}
-    <GameGrid gridSize={gridSize} fruit={fruit} snake={snake} />
+    <GameGrid gridSize={gridSize} fruit={fruit} snake={snake}/>
     </>
   )
 }

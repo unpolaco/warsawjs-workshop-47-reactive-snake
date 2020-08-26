@@ -12,12 +12,6 @@ export default function useGame() {
 		{ x: gridSize / 2, y: gridSize / 2 },
 		{ x: gridSize / 2, y: gridSize / 2 + 1 },
 		{ x: gridSize / 2, y: gridSize / 2 + 2 },
-		{ x: gridSize / 2, y: gridSize / 2 + 3 },
-		{ x: gridSize / 2, y: gridSize / 2 + 4 },
-		{ x: gridSize / 2, y: gridSize / 2 + 5 },
-		{ x: gridSize / 2, y: gridSize / 2 + 6 },
-		{ x: gridSize / 2, y: gridSize / 2 + 7 },
-		{ x: gridSize / 2, y: gridSize / 2 + 8 },
 	]);
 	const [fruit, setFruit] = useState({
 		x: randomIndex(gridSize),
@@ -27,7 +21,7 @@ export default function useGame() {
 	const direction = useGameDirection('up');
 	useGameLoop({ speed, onTick: handleGameTick });
 	useSpaceDownEvent(pauseGame);
-	
+
 	let randomFruitPosition = {};
 	let fruitOnSnake;
 
@@ -38,7 +32,7 @@ export default function useGame() {
 	}, [fruit]);
 
 	function newFruitPosition() {
-		const randomFruitPosition = {
+		randomFruitPosition = {
 			x: randomIndex(gridSize),
 			y: randomIndex(gridSize),
 		};
