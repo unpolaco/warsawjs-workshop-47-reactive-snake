@@ -12,20 +12,49 @@ export default function useGame() {
 		{ x: gridSize / 2, y: gridSize / 2 },
 		{ x: gridSize / 2, y: gridSize / 2 + 1 },
 		{ x: gridSize / 2, y: gridSize / 2 + 2 },
+		{ x: gridSize / 2, y: gridSize / 2 + 3 },
+		{ x: gridSize / 2, y: gridSize / 2 + 4 },
+		{ x: gridSize / 2, y: gridSize / 2 + 5 },
+		{ x: gridSize / 2, y: gridSize / 2 + 6 },
+		{ x: gridSize / 2, y: gridSize / 2 + 7 },
+		{ x: gridSize / 2, y: gridSize / 2 + 8 },
 	]);
 	const [fruit, setFruit] = useState({
 		x: randomIndex(gridSize),
 		y: randomIndex(gridSize),
 	});
+
 	const direction = useGameDirection('up');
 	useGameLoop({ speed, onTick: handleGameTick });
 	useSpaceDownEvent(pauseGame);
+	
+	let randomFruitPosition = {};
+	let fruitOnSnake;
 
 	useLayoutEffect(() => {
 		const newFruit = document.querySelector('.fruitCell');
 		newFruit.style =
 			'transition: transform 0.5s; transform: rotate3d(1, 1, 1, 360deg);';
 	}, [fruit]);
+
+	function newFruitPosition() {
+		const randomFruitPosition = {
+			x: randomIndex(gridSize),
+			y: randomIndex(gridSize),
+		};
+		fruitOnSnake = snake.filter(
+			(snakePart) =>
+				snakePart.x === randomFruitPosition.x &&
+				snakePart.y === randomFruitPosition.y
+		);
+	}
+
+	function setFruitPosition() {
+		do {
+			newFruitPosition();
+		} while (fruitOnSnake.length > 0);
+		setFruit(randomFruitPosition);
+	}
 
 	function handleGameTick() {
 		if (!paused) {
@@ -35,10 +64,7 @@ export default function useGame() {
 				fruit.x === newSnakeHead.x && fruit.y === newSnakeHead.y;
 
 			if (fruitEaten) {
-				setFruit({
-					x: randomIndex(gridSize),
-					y: randomIndex(gridSize),
-				});
+				setFruitPosition();
 				increaseSpeed();
 			}
 			if (direction === 'up') {
