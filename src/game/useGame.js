@@ -80,7 +80,8 @@ export default function useGame() {
 			setSnake(newSnake);
 
 			function isSnakeOutBoard() {
-				if(newSnakeHead.x > 10 || newSnakeHead.y > 10 || newSnakeHead.x < 0 || newSnakeHead.y < 0) {
+				if((newSnakeHead.x || newSnakeHead.y) > 10 
+				|| (newSnakeHead.x || newSnakeHead.y) < 0) {
 					console.log("UPS! Snake is escaping!!!")
 				}
 			}
@@ -99,4 +100,15 @@ export default function useGame() {
 	}
 
 	return { snake, fruit };
+}
+
+let a=2;
+let b=2;
+let c=2;
+let d=2;
+function test() {
+	if((a || b) > 10 
+	|| (c || d) < 0) {
+		console.log("UPS! DUPA!!!")
+	}
 }
