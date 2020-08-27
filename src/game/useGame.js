@@ -24,7 +24,7 @@ export default function useGame() {
 
 	let randomFruitPosition = {};
 	let fruitOnSnake;
-
+	
 	useLayoutEffect(() => {
 		const newFruit = document.querySelector('.fruitCell');
 		newFruit.style =
@@ -42,6 +42,7 @@ export default function useGame() {
 				snakePart.y === randomFruitPosition.y
 		);
 	}
+
 
 	function setFruitPosition() {
 		do {
@@ -70,15 +71,28 @@ export default function useGame() {
 			} else if (direction === 'left') {
 				newSnakeHead.y -= 1;
 			}
-			if(snake.find(snakePart => snakePart.x === newSnakeHead.x && snakePart.y === newSnakeHead.y)) {
-				alert("UPS! Snake is eating themself!")
-			}
+			isSnakeOutBoard()
+			isSnakeEatSelf()
+
 			const newSnake = fruitEaten
-				? [newSnakeHead, ...snake.slice(0, snake.length)]
-				: [newSnakeHead, ...snake.slice(0, snake.length - 1)];
+			? [newSnakeHead, ...snake.slice(0, snake.length)]
+			: [newSnakeHead, ...snake.slice(0, snake.length - 1)];
 			setSnake(newSnake);
+
+			function isSnakeOutBoard() {
+				if(newSnakeHead.x > 10 || newSnakeHead.y > 10 || newSnakeHead.x < 0 || newSnakeHead.y < 0) {
+					console.log("UPS! Snake is escaping!!!")
+				}
+			}
+			function isSnakeEatSelf() {
+				if(snake.find(snakePart => snakePart.x === newSnakeHead.x && snakePart.y === newSnakeHead.y)) {
+					alert("UPS! Snake is eating themself!")
+				}
+			}
+
 		}
 	}
+
 
 	function randomIndex(n) {
 		return Math.floor(Math.random() * n);
