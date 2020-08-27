@@ -3,13 +3,17 @@ import GameContext from './GameContext';
 import './GameMenu.css';
 
 export default function GameMenu() {
+  const gridSizeOptions = [
+    {value: '10', name: '10x10'},
+    {value: '12', name: '12x12'},
+    {value: '15', name: '15x15'},
+  ]
 	const { unpauseGame } = useContext(GameContext);
 	const [gridSize, setGridSize] = useState('10');
 
 	function handleGridSizeChange(e) {
 		setGridSize(e.target.value);
 	}
-
 	return (
 		<div className='gameMenu'>
 			<div className='gameMenuOverlay' />
@@ -22,36 +26,21 @@ export default function GameMenu() {
         </div>
 				<form className='gridSizeForm'>
 					<p>set board game size</p>
-					<label htmlFor='10x10'>
+        { gridSizeOptions.map(el => {
+					return (
+            <label htmlFor={el.name}>
 						<input
 							type='radio'
-							id='10x10'
-							value='10'
+							id={el.name}
+							key={el.name}
+							value={el.value}
 							onChange={handleGridSizeChange}
-							checked={gridSize === '10'}
+							checked={gridSize === el.value}
 						/>
-						10x10
+						{el.name}
 					</label>
-					<label htmlFor='12x12'>
-						<input
-							type='radio'
-							id='12x12'
-							value='12'
-							checked={gridSize === '12'}
-							onChange={handleGridSizeChange}
-						/>
-						12x12
-					</label>
-					<label htmlFor='15x15'>
-						<input
-							type='radio'
-							id='15x15'
-							value='15'
-							checked={gridSize === '15'}
-							onChange={handleGridSizeChange}
-						/>
-						15x15
-					</label>
+          )
+        })}
 				</form>
 			</div>
 		</div>
