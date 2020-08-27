@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/warsawjs-workshop-47-reactive-snake/static/css/main.b9a26f91.chunk.css",
+    "main.js": "/warsawjs-workshop-47-reactive-snake/static/js/main.ad414dc5.chunk.js",
+    "main.js.map": "/warsawjs-workshop-47-reactive-snake/static/js/main.ad414dc5.chunk.js.map",
+    "runtime-main.js": "/warsawjs-workshop-47-reactive-snake/static/js/runtime-main.0f8dce98.js",
+    "runtime-main.js.map": "/warsawjs-workshop-47-reactive-snake/static/js/runtime-main.0f8dce98.js.map",
+    "static/js/2.feb86ac5.chunk.js": "/warsawjs-workshop-47-reactive-snake/static/js/2.feb86ac5.chunk.js",
+    "static/js/2.feb86ac5.chunk.js.map": "/warsawjs-workshop-47-reactive-snake/static/js/2.feb86ac5.chunk.js.map",
+    "index.html": "/warsawjs-workshop-47-reactive-snake/index.html",
+    "precache-manifest.e679cd10783edab8e4f84245be232186.js": "/warsawjs-workshop-47-reactive-snake/precache-manifest.e679cd10783edab8e4f84245be232186.js",
+    "service-worker.js": "/warsawjs-workshop-47-reactive-snake/service-worker.js",
+    "static/css/main.b9a26f91.chunk.css.map": "/warsawjs-workshop-47-reactive-snake/static/css/main.b9a26f91.chunk.css.map",
+    "static/js/2.feb86ac5.chunk.js.LICENSE.txt": "/warsawjs-workshop-47-reactive-snake/static/js/2.feb86ac5.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0f8dce98.js",
+    "static/js/2.feb86ac5.chunk.js",
+    "static/css/main.b9a26f91.chunk.css",
+    "static/js/main.ad414dc5.chunk.js"
+  ]
+}
