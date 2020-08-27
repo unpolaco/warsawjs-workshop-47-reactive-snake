@@ -10,11 +10,11 @@
   width: 30px;
   height: 30px;
   background-color: azure;
+  border: 1px solid rgb(209, 223, 223);
 }
 .snakeCell {
   width: 30px;
   height: 30px;
-  /* border-radius: 50%; */
   background-color: rgb(78, 78, 78);
 }
 .snakeHeadCell {
@@ -27,6 +27,7 @@
 .fruitCell {
   width: 30px;
   height: 30px;
+  border-radius: 20%;
   background-color: green;
 }
 
